@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>عکاسی باغ فردوس</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; direction: rtl; background: #f8f8f8; }
+    h1 { color: #333; }
+    nav { margin: 20px; }
+    button { margin: 5px; padding: 10px 20px; border: none; border-radius: 8px; background: #4CAF50; color: white; cursor: pointer; }
+    section { display: none; margin-top: 20px; }
+    .active { display: block; }
+    input { padding: 8px; border-radius: 6px; border: 1px solid #ccc; margin: 5px; }
+  </style>
+</head>
+<body>
+  <h1>🎉 خوش آمدید به عکاسی باغ فردوس</h1>
+  <nav>
+    <button onclick="showTab('photos')">🏞 دریافت عکس‌ها</button>
+    <button onclick="showTab('samples')">📸 نمونه‌کارها</button>
+    <button onclick="showTab('offers')">🎁 تخفیف‌ها</button>
+    <button onclick="showTab('lottery')">⭐ قرعه‌کشی</button>
+  </nav>
+
+  <section id="photos" class="active">
+    <h2>کد خود را وارد کنید</h2>
+    <input type="text" id="photoCode" placeholder="مثال: FARDOS001">
+    <button onclick="getPhotos()">دریافت</button>
+    <div id="photoResult"></div>
+  </section>
+
+  <section id="samples">
+    <h2>نمونه‌کارها</h2>
+    <img src="https://placekitten.com/200/200" alt="نمونه" />
+    <img src="https://placekitten.com/201/200" alt="نمونه" />
+  </section>
+
+  <section id="offers">
+    <h2>تخفیف ویژه</h2>
+    <p>🎁 تا پایان این ماه ۲۰٪ تخفیف برای همه مشتریان جدید!</p>
+  </section>
+
+  <section id="lottery">
+    <h2>شرکت در قرعه‌کشی</h2>
+    <input type="text" id="phone" placeholder="شماره موبایل">
+    <button onclick="joinLottery()">ثبت</button>
+    <div id="lotteryResult"></div>
+  </section>
+
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function getPhotos() {
+      let code = document.getElementById("photoCode").value;
+      let result = document.getElementById("photoResult");
+      if (code === "FARDOS001") {
+        result.innerHTML = "<p>✅ عکس‌های شما:</p><img src='https://placekitten.com/202/200'><img src='https://placekitten.com/203/200'>";
+      } else {
+        result.innerHTML = "<p>❌ کدی یافت نشد.</p>";
+      }
+    }
+
+    function joinLottery() {
+      let phone = document.getElementById("phone").value;
+      let result = document.getElementById("lotteryResult");
+      if (phone) {
+        result.innerHTML = "<p>✅ شماره شما ثبت شد: " + phone + "</p>";
+      } else {
+        result.innerHTML = "<p>❌ لطفا شماره وارد کنید.</p>";
+      }
+    }
+  </script>
+</body>
+</html>
